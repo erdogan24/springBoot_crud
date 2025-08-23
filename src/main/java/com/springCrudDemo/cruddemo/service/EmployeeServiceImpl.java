@@ -23,4 +23,19 @@ public class EmployeeServiceImpl implements EmployeeService{
 
         return employeeDAO.findAll();
     }
+
+    @Override
+    public Employee findById(int theId) {
+        return null;
+    }
+
+    @Override
+    public Employee save(Employee theEmployee) {
+        return null;
+    }
+
+    @Override
+    public void deleteById(int theId) {
+
+    }
 }
