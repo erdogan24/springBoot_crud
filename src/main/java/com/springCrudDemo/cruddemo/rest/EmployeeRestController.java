@@ -90,6 +90,10 @@ public class EmployeeRestController {
         }
 
         Employee patchedEmployee = apply(patchPayload , tempEmploee);
+
+        Employee dbEmployee = employeeService.save(patchedEmployee);
+
+        return dbEmployee;
     }
     private Employee apply(Map<String, Object>patchPayload,Employee tempEmployee){
 
@@ -99,8 +103,11 @@ public class EmployeeRestController {
         // Convert the pachPaayload map to a JSON object node
         ObjectNode patchNode = objectMapper.convertValue(patchPayload, ObjectNode.class);
 
-    }
+        // Merge the patch updates into the employee node
+        employeeNode.setAll(patchNode);
+        return objectMapper.convertValue(employeeNode, Employee.class);
 
+    }
 
 
 }
