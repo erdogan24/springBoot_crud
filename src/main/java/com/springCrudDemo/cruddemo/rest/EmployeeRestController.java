@@ -20,7 +20,7 @@ public class EmployeeRestController {
     private ObjectMapper objectMapper;
 
 
-    // quick and dirty : inject employee dao ( use constructor injection)
+    // quick and dirty : inject employee dao ( use constructor injection) -------------------
 
     @Autowired
     public EmployeeRestController(EmployeeService theEmployeeService, ObjectMapper theObjectMapper){
@@ -35,7 +35,7 @@ public class EmployeeRestController {
         return employeeService.findAll();
     }
 
-    // add mapping for GET / employees / {employeeId}
+    // add mapping for GET / employees / {employeeId} -------------------
 
     @GetMapping("/employees/{employeeId}")
     public Employee getEmployee(@PathVariable int employeeId){
@@ -48,7 +48,7 @@ public class EmployeeRestController {
         return  theEmployee;
     }
 
-    // add mapping for POST / employees - add new employee
+    // add mapping for POST / employees - add new employee -------------------
 
     @PostMapping("/employees")
     public Employee addEmployee(@RequestBody Employee theEmployee){
@@ -64,7 +64,7 @@ public class EmployeeRestController {
 
     }
 
-    // add mapping for PUT /employees - update existing employee
+    // add mapping for PUT /employees - update existing employee -------------------
 
     @PutMapping("/employees")
     public Employee updateEmployee(@RequestBody Employee theEmployee){
@@ -73,7 +73,7 @@ public class EmployeeRestController {
         return dbEmployee;
     }
 
-    // add mapping for PATCH /employees/{employeeId} - patch employee ... partial update
+    // add mapping for PATCH /employees/{employeeId} - patch employee ... partial update -------------------
 
     @PatchMapping("/employees/{employeeId}")
     public Employee patchEmployee(@PathVariable int employeeId,
@@ -106,6 +106,24 @@ public class EmployeeRestController {
         // Merge the patch updates into the employee node
         employeeNode.setAll(patchNode);
         return objectMapper.convertValue(employeeNode, Employee.class);
+
+    }
+
+    //  add mapping for DELETE /employees/{employeeId} - delete employee -------------------
+
+    @DeleteMapping("/employees/{employeeId}")
+    public String deleteEmployee(@PathVariable int employeeId){
+        Employee tempEmployee = employeeService.findById(employeeId);
+
+        // throw exception if null
+
+        if (tempEmployee == null){
+            throw new RuntimeException("Employee id not found -" + employeeId);
+        }
+
+        employeeService.deleteById(employeeId);
+
+        return "Delete employee id - " + employeeId;
 
     }
 
