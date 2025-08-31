@@ -1,6 +1,7 @@
 package com.springCrudDemo.cruddemo.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.springCrudDemo.cruddemo.entity.Employee;
 import com.springCrudDemo.cruddemo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,6 +92,12 @@ public class EmployeeRestController {
         Employee patchedEmployee = apply(patchPayload , tempEmploee);
     }
     private Employee apply(Map<String, Object>patchPayload,Employee tempEmployee){
+
+        // Convert employee object to a json object node
+        ObjectNode employeeNode = objectMapper.convertValue(tempEmployee, ObjectNode.class);
+
+        // Convert the pachPaayload map to a JSON object node
+        ObjectNode patchNode = objectMapper.convertValue(patchPayload, ObjectNode.class);
 
     }
 
