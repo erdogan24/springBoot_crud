@@ -1,3 +1,5 @@
+/*
+
 package com.springCrudDemo.cruddemo.service;
 
 import com.springCrudDemo.cruddemo.entity.Employee;
@@ -16,3 +18,4 @@ public interface EmployeeService {
 
     void deleteById(int theId);
 }
+*/
