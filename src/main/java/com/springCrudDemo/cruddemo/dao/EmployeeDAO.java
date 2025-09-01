@@ -1,3 +1,4 @@
+/*
 package com.springCrudDemo.cruddemo.dao;
 
 import com.springCrudDemo.cruddemo.entity.Employee;
@@ -17,3 +18,4 @@ public interface EmployeeDAO {
 
     void deleteById(int theId);
 }
+*/

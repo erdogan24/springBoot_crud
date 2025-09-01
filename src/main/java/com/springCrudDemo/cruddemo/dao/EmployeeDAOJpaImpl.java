@@ -1,3 +1,4 @@
+/*
 package com.springCrudDemo.cruddemo.dao;
 
 import com.springCrudDemo.cruddemo.entity.Employee;
@@ -70,3 +71,5 @@ public class EmployeeDAOJpaImpl implements EmployeeDAO{
         entityManager.remove(theEmployee);
     }
 }
+
+*/
